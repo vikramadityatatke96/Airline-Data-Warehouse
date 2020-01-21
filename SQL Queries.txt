@@ -1,0 +1,57 @@
+CREATE TABLE [AirlineDetails] (
+    [AirlineID] INT PRIMARY KEY NOT NULL,
+    [Airline] varchar(50),
+    [IATA Code] varchar(50),
+    [CountryID] INT,
+    [Country] varchar(50),
+    [Airline Score] INT,
+    [Revenue] INT,
+    [Operating_Revenue] INT,
+    [Operating_Expense] INT,
+    [Gallons_Fuel] INT,
+    [Load_Factor] INT,
+    [Number of Airplanes] INT,
+    [Fleet Age AVG ] INT,
+    [Country Code] varchar(50)
+)
+
+CREATE TABLE [AirlineRatings] (
+    [RID] INT PRIMARY KEY NOT NULL,
+    [AirlineID] INT,
+    [Airline] varchar(50),
+    [CabinID] INT,
+    [Cabin Flown] varchar(50),
+    [Comfort Rating] INT,
+    [Staff Rating] INT,
+    [Food Rating] INT,
+    [Entertainment Rating] INT,
+    [Value for Money] INT
+)
+
+CREATE TABLE [Cabin] (
+    [CabinID] INT PRIMARY KEY NOT NULL,
+    [CabinGroupID] INT,
+    [Cabin Flown] varchar(50),
+    [AirlineID] INT
+)
+
+CREATE TABLE [TrafficGrowth] (
+    [YearID] INT PRIMARY KEY NOT NULL,
+    [Year] INT,
+    [Percentage Growth] INT
+)
+
+CREATE TABLE [PassengersCarried] (
+    [AirlineID] INT,
+    [YearID] INT,
+    [Year] INT,
+    [No of Passengers] INT
+)
+
+CREATE TABLE [Sentiments] (
+    [SentimentID] INT PRIMARY KEY NOT NULL,
+    [Sentiment] varchar(50),
+    [SentimentGroupID] INT,
+    [SentimentValue] INT,
+    [AirlineID] INT
+)

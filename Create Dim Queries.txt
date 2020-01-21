@@ -1,0 +1,62 @@
+CREATE TABLE [DimAirline] (
+    [AirlineID] INT PRIMARY KEY NOT NULL,
+    [Airline] varchar(50),
+    [IATA Code] varchar(50),
+    [Airline Score] INT,
+    [Revenue] INT,
+    [Operating_Revenue] INT,
+    [Operating_Expense] INT,
+    [Gallons_Fuel] INT,
+    [Load_Factor] INT,
+    [Number of Airplanes] INT,
+    [Fleet Age AVG ] INT,
+)
+
+CREATE TABLE [DimCountry](
+CID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+CountryID INT,
+Country VARCHAR(50),
+[Country Code] VARCHAR(50)
+)
+
+CREATE TABLE [DimCabin](
+CabinID INT PRIMARY KEY NOT NULL ,
+CabinGroupID INT,
+Cabin VARCHAR(50),
+AirlineID
+)
+
+DROP TABLE DimSentiments
+CREATE TABLE [DimSentiments](
+    [SentimentID] INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    [Sentiment] VARCHAR(50),
+    [SentimentGroupID] INT,
+    [SentimentValue] INT,
+)
+
+TRUNCATE TABLE [DimTrafficGrowth]
+CREATE TABLE [DimTrafficGrowth](
+    [YearID] INT PRIMARY KEY NOT NULL,
+    [Year] DATE,
+    [Percentage Growth] INT
+)
+
+CREATE TABLE [DimPassengers](
+    PID INT IDENTITY(1,1) PRIMARY KEY NOT NULL,
+    [AirlineID] INT,
+    [YearID] INT,
+    [Year] INT,
+    [No of Passengers] INT
+)
+
+CREATE TABLE [DimRatings](
+    [RID] INT PRIMARY KEY NOT NULL,
+    [AirlineID] INT,
+    [CabinGroupID] INT,
+    [Comfort Rating] INT,
+    [Staff Rating] INT,
+    [Food Rating] INT,
+    [Entertainment Rating] INT,
+    [Value for Money] INT,
+    [CountryID] INT,
+)

@@ -1,0 +1,84 @@
+TRUNCATE TABLE[DimAirline]
+INSERT INTO [DimAirline] ( [AirlineID],
+    [Airline],
+    [IATA Code],
+    [Airline Score],
+    [Revenue],
+    [Operating_Revenue],
+    [Operating_Expense],
+    [Gallons_Fuel],
+    [Load_Factor],
+    [Number of Airplanes],
+    [Fleet Age AVG]
+)
+SELECT [AirlineID], [Airline],[IATA Code], [Airline Score], [Revenue], [Operating_Revenue], [Operating_Expense],[Gallons_Fuel], [Load_Factor], [Number of Airplanes],
+[Fleet Age AVG] FROM [AirlineDetails]
+
+TRUNCATE TABLE[DimCountry]
+INSERT INTO [DimCountry](
+CountryID, 
+Country, 
+[Country Code]
+)
+SELECT  * FROM [Country]
+
+
+TRUNCATE TABLE[DimCabin]
+INSERT INTO [DimCabin](
+CabinID,
+CabinGroupID,
+CabinFlown,
+AirlineID
+)
+SELECT * FROM Cabin
+
+
+TRUNCATE TABLE DimSentiments
+INSERT INTO [DimSentiments](
+    [Sentiment],
+    [SentimentGroupID],
+    [SentimentValue]
+)
+SELECT [Sentiment],
+    [SentimentGroupID],
+    [SentimentValue]
+	FROM Sentiments
+WHERE Sentiments.SentimentGroupID = 1
+OR Sentiments.SentimentGroupID = 2
+OR Sentiments.SentimentGroupID = 3
+
+
+TRUNCATE TABLE[DimTrafficGrowth]
+INSERT INTO [DimTrafficGrowth](
+    [YearID] ,
+    [Year],
+    [Percentage Growth]
+)
+SELECT [YearID], cast(cast(Year as varchar(8)) as date), [Percentage Growth] FROM TrafficGrowth
+
+
+TRUNCATE TABLE[DimPassengers]
+INSERT INTO [DimPassengers](
+    [AirlineID],
+    [YearID],
+    [Year],
+    [No of Passengers]
+)
+SELECT [AirlineID], [YearID], cast(cast(Year as varchar(8)) as date), [No of Passengers] FROM [PassengersCarried]
+
+
+TRUNCATE TABLE[DimRatings]
+INSERT INTO [DimRatings](
+    [RID],
+    [AirlineID],
+    [CabinGroupID],
+    [Comfort Rating],
+    [Staff Rating],
+    [Food Rating],
+    [Entertainment Rating],
+    [Value for Money],
+    [CountryID]
+)
+SELECT [RID], [a].[AirlineID], [Comfort Rating], [CabinGroupID], [Staff Rating], [Food Rating],
+[Entertainment Rating], [Value for Money], [Country] FROM [AirlineRatings] a, [Cabin] c
+WHERE a.RID = c.CabinID

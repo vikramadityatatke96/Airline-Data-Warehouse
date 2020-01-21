@@ -1,0 +1,29 @@
+
+CREATE TABLE [fact_table]([AirlineID] INT
+      ,[SentimentID] INT
+      ,[RID] INT
+      ,[CID] INT
+      ,[PID] INT
+      ,[CabinID] INT
+      ,[YearID] INT
+      ,[Year] INT
+      ,[No of Passengers] INT
+      ,[Percentage Growth] INT
+      ,[CountryID] INT
+      ,[CabinGroupID] INT
+      ,[SentimentGroupID] INT
+      ,[SentimentValue] INT
+      ,[Airline Score] INT
+      ,[Revenue] INT
+      ,[Operating_Revenue] INT
+      ,[Operating_Expense] INT
+      ,[Gallons_Fuel] INT
+      ,[Load_Factor] INT
+      ,[Number of Airplanes] INT
+      ,[Fleet Age AVG ] INT
+      ,[Comfort Rating] INT
+      ,[Staff Rating] INT
+      ,[Food Rating] INT
+      ,[Entertainment Rating] INT
+      ,[Value for Money] INT
+)

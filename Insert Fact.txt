@@ -1,0 +1,64 @@
+TRUNCATE TABLE [fact_table]
+INSERT INTO [fact_table] (
+    [AirlineID],
+    [SentimentID],
+    [RID],
+	[CID]
+      ,[PID]
+      ,[CabinID]
+      ,[YearID]
+	  ,[Year]
+      ,[No of Passengers]
+      ,[Percentage Growth]
+      ,[CountryID]
+      ,[CabinGroupID],
+    [SentimentGroupID],
+    [SentimentValue],
+    [Airline Score],
+    [Revenue],
+    [Operating_Revenue],
+    [Operating_Expense],
+    [Gallons_Fuel],
+    [Load_Factor],
+    [Number of Airplanes],
+    [Fleet Age AVG ],
+    [Comfort Rating],
+    [Staff Rating],
+    [Food Rating],
+    [Entertainment Rating],
+    [Value for Money]
+) 
+SELECT [a].[AirlineID],
+    [SentimentID],
+    [RID],
+	[CID]
+      ,[PID]
+      ,[CabinID]
+      ,[l].[YearID]
+	  ,[l].[Year]
+      ,[No of Passengers]
+      ,[Percentage Growth]
+      ,[n].[CountryID]
+      ,[m].[CabinGroupID],
+    [SentimentGroupID], 
+    [SentimentValue],
+    [Airline Score],
+    [Revenue],
+    [Operating_Revenue],
+    [Operating_Expense],
+    [Gallons_Fuel],
+    [Load_Factor],
+    [Number of Airplanes],
+    [Fleet Age AVG ],
+    [Comfort Rating],
+    [Staff Rating],
+    [Food Rating],
+    [Entertainment Rating],
+    [Value for Money]
+FROM [dimRatings] b
+LEFT JOIN [dimAirline] a ON b.AirlineID=a.AirlineID
+LEFT JOIN [dimSentiments] s ON b.RID=s.SentimentID
+LEFT JOIN [DimPassengers] l ON b.RID=l.PID
+LEFT JOIN [DimCabin] m ON b.RID=m.CabinID
+LEFT JOIN [DimCountry] n ON b.RID=n.CID
+LEFT JOIN [DimTrafficGrowth] o ON l.YearID=o.YearID
